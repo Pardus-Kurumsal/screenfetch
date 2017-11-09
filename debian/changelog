@@ -1,3 +1,10 @@
+screenfetch (3.7.0-1pardus1) onyedi; urgency=medium
+
+  * Pardus CI implementation
+  * Add Support for Pardus
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Thu, 09 Nov 2017 15:33:44 +0300
+
 screenfetch (3.7.0-1) unstable; urgency=medium
 
   * Imported Upstream version 3.7.0
