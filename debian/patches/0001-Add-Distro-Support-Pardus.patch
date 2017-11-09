@@ -1,0 +1,89 @@
+From: =?utf-8?q?Yunusemre_=C5=9Eent=C3=BCrk?=
+ <yunusemre.senturk@pardus.org.tr>
+Date: Thu, 9 Nov 2017 15:32:04 +0300
+Subject: Add Distro Support : Pardus
+
+---
+ screenfetch-dev | 41 +++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 39 insertions(+), 2 deletions(-)
+
+diff --git a/screenfetch-dev b/screenfetch-dev
+index 56837fe..2b2c486 100755
+--- a/screenfetch-dev
++++ b/screenfetch-dev
+@@ -189,7 +189,7 @@ detectColors() {
+ 	my_hcolor=$(colorNumberToCode "${my_hcolor}")
+ }
+ 
+-supported_distros="Antergos, Arch Linux (Old and Current Logos), BLAG, CentOS, Chakra, Chapeau, CrunchBang, CRUX, Debian, Deepin, Dragora, elementary OS, Evolve OS, Fedora, Frugalware, Fuduntu, Funtoo, Gentoo, gNewSense, Jiyuu Linux, Kali Linux, KaOS, Korora, LinuxDeepin, Linux Mint, LMDE, Logos, Mageia, Mandriva/Mandrake, Manjaro, NixOS, openSUSE, Parabola GNU/Linux-libre, PeppermintOS, Raspbian, Red Hat Enterprise Linux, Sabayon, Scientific Linux, Slackware, Solus, TinyCore, Trisquel, Ubuntu, Viperr and Void."
++supported_distros="Antergos, Arch Linux (Old and Current Logos), BLAG, CentOS, Chakra, Chapeau, CrunchBang, CRUX, Debian, Deepin, Dragora, elementary OS, Evolve OS, Fedora, Frugalware, Fuduntu, Funtoo, Gentoo, gNewSense, Jiyuu Linux, Kali Linux, KaOS, Korora, LinuxDeepin, Linux Mint, LMDE, Logos, Mageia, Mandriva/Mandrake, Manjaro, NixOS, openSUSE, Parabola GNU/Linux-libre, Pardus, PeppermintOS, Raspbian, Red Hat Enterprise Linux, Sabayon, Scientific Linux, Slackware, Solus, TinyCore, Trisquel, Ubuntu, Viperr and Void."
+ supported_other="Dragonfly/Free/Open/Net BSD, Haiku, Mac OS X and Windows+Cygwin."
+ supported_dms="KDE, Gnome, Unity, Xfce, LXDE, Cinnamon, MATE, CDE and RazorQt."
+ supported_wms="2bwm, 9wm, Awesome, Beryl, Blackbox, Cinnamon, Compiz, dminiwm, dwm, dtwm, E16, E17, echinus, Emerald, FluxBox, FVWM, herbstluftwm, IceWM, KWin, Metacity, monsterwm, Musca, Gala, Mutter, Muffin, Notion, OpenBox, PekWM, Ratpoison, Sawfish, ScrotWM, SpectrWM, StumpWM, subtle, WindowMaker, WMFS, wmii, Xfwm4, XMonad and i3."
+@@ -477,6 +477,9 @@ detectdistro () {
+ 					distro_codename="n/a"
+ 					distro_release="n/a"
+ 					;;
++				"Pardus")
++					distro="Pardus"
++					;;
+ 				"Peppermint")
+ 					distro="Peppermint"
+ 					distro_codename=null
+@@ -761,6 +764,7 @@ detectdistro () {
+ 		kaos) distro="KaOS";;
+ 		linuxdeepin) distro="LinuxDeepin" ;;
+ 		deepin) distro="Deepin" ;;
++		pardus) distro="Pardus" ;;
+ 		chakra) distro="Chakra" ;;
+ 		centos) distro="CentOS" ;;
+ 		mac*os*x) distro="Mac OS X" ;;
+@@ -841,7 +845,7 @@ detectpkgs () {
+ 		'Arch Linux'|'Parabola GNU/Linux-libre'|'Chakra'|'Manjaro'|'Antergos'|'KaOS') pkgs=$(pacman -Qq | wc -l) ;;
+ 		'Dragora') pkgs=$(ls -1 /var/db/pkg | wc -l) ;;
+ 		'Frugalware') pkgs=$(pacman-g2 -Q | wc -l) ;;
+-		'Fuduntu'|'Ubuntu'|'Mint'|'Debian'|'Raspbian'|'LMDE'|'CrunchBang'|'Peppermint'|'LinuxDeepin'|'Deepin'|'Kali Linux'|'Trisquel'|'elementary OS'|'gNewSense') pkgs=$(dpkg --get-selections | grep -v deinstall$ | wc -l) ;;
++		'Fuduntu'|'Ubuntu'|'Mint'|'Debian'|'Raspbian'|'LMDE'|'CrunchBang'|'Peppermint'|'LinuxDeepin'|'Deepin'|'Pardus'|'Kali Linux'|'Trisquel'|'elementary OS'|'gNewSense') pkgs=$(dpkg --get-selections | grep -v deinstall$ | wc -l) ;;
+ 		'Slackware') pkgs=$(ls -1 /var/log/packages | wc -l) ;;
+ 		'Gentoo'|'Sabayon'|'Funtoo') pkgs=$(ls -d /var/db/pkg/*/* | wc -l) ;;
+ 		'NixOS') pkgs=$(ls -d -1 /nix/store/*/ | wc -l) ;;
+@@ -2192,6 +2196,39 @@ asciiText () {
+ "${c2} .\`                                 \`/%s")
+ 		;;
+ 
++		"Pardus")
++			if [[ "$no_color" != "1" ]]; then
++				c1=$(getColor 'yellow') # Light
++				c2=$(getColor 'dark gray') # Dark
++			fi
++			if [ -n "${my_lcolor}" ]; then c1="${my_lcolor}"; c2="${my_lcolor}"; fi
++			startline="1"
++			fulloutput=("      .                                              .      "
++"${c1}    :NWWKx:.           .';coxOOxoc;'.           .:xKWWX:     %s"
++"${c1}  .0WWWWWWWWN.  .::x0XWWOXWWWWWWWWWWWWX0ko:   .XWWWWWWWW0.  %s"
++"${c1}   lWWWWWWWN,  ;kP  OWW: dWWWWWWWWWWWWWWWWWX,  ,NWWWWWWWl   %s"
++"${c1}    .0WWWWN.  lWO  .kWWkxWWWWWWWWWWWWWWWWWWWWl  .XWWWW0.    %s"
++"${c1}      .lkk.  oNdlO0XWWWWWWWWWWWWWWWWWWWWWWWWWWo  .kkl.      %s"
++"${c1}            xWk  ;WWO. WWWWWWWWWWWWWWWWWWWWWWWWx            %s"
++"${c1}           OWWWNXWWWWNWWWWWWWWWWWWWWWWWWWWWWWWWWO           %s"
++"${c1}          0WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW0          %s"
++"${c1}        .KWWWNKOkkxxxxddddKWWWWWWKddddxxxxkkOKNWWWK.        %s"
++"${c1}        KWWWWWWWNK0x.     lWWWWWWl     .x0KXWWWWWWWK        %s"
++"${c1}       .WWWWWWWWWWWWWWWWO dWWWWWWd OWWWWWWWWWWWWWWWW.       %s"
++"${c1}        XWWWWWWWWWWWWWWW, NWWWWWWN ,WWWWWWWWWWWNOWWX        %s"
++"${c1}        dWWWWWWWWWWWWWW0 cWWWWWWWWc 0WWWWWWWWWW  OWd        %s"
++"${c1}        'WWWWWWWWWWNWWWNd0WWWWWWWW0dNWWWNWWWkoXxoWW'        %s"
++"${c1}         XWWWWWWWNldWWWWK;,  ,,  ,;KWWWWdcNWOlO' ;K         %s"
++"${c1}         lWWWWWWK. NWWWWNN\\      /NNWWWWN .XWWN:!ll         %s"
++"${c1}           x0NNO  .WWWN0kOX:    :XOk0NWWW. .NWN0x           %s"
++"${c1}                   ;llodx0WWK  KWW0xdolc;                   %s"
++"${c1}                    .cox0KNWW  WWNK0xoc.                    %s"
++"${c1}                      clokNWW..WWNkolc                      %s"
++"${c1}                       'KWO' db 'OWK'                       %s"
++"${c1}                          .dNWWNb.                          %s"
++"${c1}                           ;:cc:;.                          %s")
++		;;
++
+ 		"Mint")
+ 			if [[ "$no_color" != "1" ]]; then
+ 				c1=$(getColor 'white') # White
